@@ -12,5 +12,7 @@ namespace backend.Models
         public DbSet<Alimento> Alimentos { get; set; }
         public DbSet<Nutriente> Nutrientes { get; set; }
 
+        public DbSet<Ejercicio> Ejercicios { get; set; }
+
     }
 }
