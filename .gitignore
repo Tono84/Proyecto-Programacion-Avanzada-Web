@@ -20,6 +20,15 @@ frontend-razor/wwwroot/lib/
 frontend-razor/bin/
 frontend-razor/obj/
 
+frontend-razor-backup/frontend-razor/bin/
+frontend-razor-backup/frontend-razor/obj/
+
+frontend-razor-backup/frontend-razor/wwwroot/lib/
+frontend-razor-backup/wwwroot/lib/
+
+frontend-razor-backup/bin/
+frontend-razor-backup/obj/
+
 # Ignore user-specific files for the backend
 backend/.user
 backend/.suo
