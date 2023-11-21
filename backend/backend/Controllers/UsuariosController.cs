@@ -18,13 +18,17 @@ namespace backend.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
+        [HttpPost("VerificarUsuario")]
+        public async Task<ActionResult<bool>> VerificarUsuario([FromBody] VerificacionUsuario request)
         {
-            return await _context.Usuarios.ToListAsync();
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.NombreUsuario == request.Username && u.Contraseña == request.Password);
+
+            return usuario != null;
         }
 
-    [HttpGet("{id}")]
+
+        [HttpGet("{id}")]
     public async Task<ActionResult<Usuario>> GetUsuario(int id)
     {
         var usuario = await _context.Usuarios.FindAsync(id);
@@ -94,5 +98,6 @@ namespace backend.Controllers
     {
         return _context.Usuarios.Any(e => e.IdUsuario == id);
     }
+
 }
 }
