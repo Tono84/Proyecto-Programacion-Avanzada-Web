@@ -1,0 +1,121 @@
+﻿@page
+@model frontend_razor.Pages.SignupModel
+@{
+    ViewData["Title"] = "Registrarse";
+    Layout = "/Pages/Shared/_Login_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/imagenes/loginBackground.jpg');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 8px;
+                box-sizing: border-box;
+            }
+
+        .btn-login {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .signup-link,
+        .forgot-link {
+            color: #3498db;
+            text-decoration: none;
+            margin-top: 10px;
+            display: block;
+        }
+
+        .error-mensaje {
+            margin-top: 10px;
+        }
+
+        .error-texto {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="center-content">
+                <div class="signup-container">
+                    <h2>Registrarse</h2>
+                    <form method="post" onsubmit="return handleSignup()">
+                        <div class="form-group">
+                            <label for="nombreUsuario">Usuario:</label>
+                            <input type="text" id="nombreUsuario" name="nombreUsuario" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contraseña">Contraseña:</label>
+                            <input type="password" id="contraseña" name="contraseña" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirmar Contraseña:</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellido:</label>
+                            <input type="text" id="apellido" name="apellido" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo:</label>
+                            <input type="email" id="correo" name="correo" required />
+                        </div>
+                        <button type="submit" class="btn-login">Registrarse</button>
+                    </form>
+                    @if (ViewData["ShowPWError"] != null && (bool)ViewData["ShowPWError"])
+                    {
+                        <div class="error-mensaje">
+                            <p class="error-texto">Contraseñas no coinciden. Inténtalo de nuevo.</p>
+                        </div>
+                    }
+
+                    <a href="Index" class="signup-link">¿Ya tienes una cuenta? Inicia Sesión</a>
+                    <a href="#" class="forgot-link">¿Olvidaste tu Contraseña?</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
