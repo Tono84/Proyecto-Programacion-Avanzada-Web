@@ -1,8 +1,8 @@
-﻿using frontend_razor.Models;
+﻿using frontend.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace frontend_razor.Controllers
+namespace frontend.Controllers
 {
     public class HomeController : Controller
     {

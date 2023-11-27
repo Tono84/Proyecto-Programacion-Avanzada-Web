@@ -1,4 +1,4 @@
-namespace frontend_razor.Models
+namespace frontend.Models
 {
     public class ErrorViewModel
     {
