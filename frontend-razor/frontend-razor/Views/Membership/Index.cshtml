@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cuerpo&Mente - Elegir planes disponibles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            transition: transform 0.2s;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            margin: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #fff;
+            color: black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .membresia-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .membresia-card {
+            text-align: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.2s;
+        }
+
+            .membresia-card:hover {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transform: scale(1.05);
+            }
+
+            .membresia-card .titulo {
+                background-color: #00b894;
+                color: #fff;
+                padding: 10px;
+                text-align: center;
+                font-size: 1.2em;
+            }
+
+            .membresia-card .precio {
+                text-align: center;
+                font-size: 1.5em;
+                margin: 10px 0;
+            }
+
+            .membresia-card .boton {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                background-color: #00b894;
+                color: #fff;
+                text-align: center;
+                text-decoration: none;
+                border: none;
+                cursor: pointer;
+            }
+
+                .membresia-card .boton:hover {
+                    background-color: #00a897;
+                }
+
+            
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <section class="membresia-section">
+            <div class="membresia-card">
+                <div class="titulo">Plan Mensual</div>
+                <div class="precio">₡10.000</div>
+                <p>
+                    Disfrute de acceso exclusivo a sesiones de entrenamiento 
+                    en vivo dirigidas por entrenadores expertos. Estas sesiones brindan la oportunidad de 
+                    participar en ejercicios en tiempo real, recibir retroalimentación personalizada y 
+                    mantenerse motivados con la interacción en vivo.
+                </p>
+                <a href="@Url.Action("Confirmation","Membership")" class="boton">Seleccionar</a>
+            </div>
+
+            <div class="membresia-card">
+                <div class="titulo">Plan Semestral</div>
+                <div class="precio">₡50.000</div>
+                <p>
+                    Obtén un beneficio adicional de análisis 
+                    avanzado del progreso. Con informes detallados sobre el rendimiento físico y los hábitos 
+                    nutricionales a lo largo del tiempo, los suscriptores pueden evaluar de manera más profunda 
+                    su evolución y realizar ajustes precisos en sus metas y enfoques.
+                </p>
+                <a href="@Url.Action("Confirmation","Membership")" class="boton">Seleccionar</a>
+            </div>
+
+            <div class="membresia-card">
+                <div class="titulo">Plan Anual</div>
+                <div class="precio">₡100.000</div>
+                <p>
+                    Reciba un programa de nutrición a largo plazo diseñado 
+                    específicamente para sus objetivos y necesidades. Este plan incluye evaluaciones periódicas 
+                    y ajustes continuos para asegurar un enfoque sostenible y personalizado hacia una alimentación 
+                    saludable a lo largo de todo el año.
+                </p>
+                <a href="@Url.Action("Confirmation","Membership")" class="boton">Seleccionar</a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
