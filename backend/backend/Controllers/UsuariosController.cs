@@ -19,12 +19,17 @@ namespace backend.Controllers
         }
 
         [HttpPost("VerificarUsuario")]
-        public async Task<ActionResult<bool>> VerificarUsuario([FromBody] VerificacionUsuario request)
+        public async Task<ActionResult<object>> VerificarUsuario([FromBody] VerificacionUsuario request)
         {
             var usuario = await _context.Usuarios
                 .FirstOrDefaultAsync(u => u.NombreUsuario == request.Username && u.Contraseña == request.Password);
 
-            return usuario != null;
+            if (usuario != null)
+            {
+                return Ok(usuario);
+            }
+
+            return NotFound(false);
         }
 
 

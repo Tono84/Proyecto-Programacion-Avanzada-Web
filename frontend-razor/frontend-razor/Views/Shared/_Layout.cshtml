@@ -33,7 +33,6 @@
 
 <body>
 
-    <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
 
@@ -57,7 +56,14 @@
                     <li><a href="services.html">Servicios</a></li>
                     <li><a href="pricing.html">Precios</a></li>
                     <li><a href="blog.html">Blog</a></li>
-                    <li><a href="@Url.Action("Login", "Account")" class="btn-get-started">Iniciar Sesión</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="#" onclick="logout()">Cerrar Sesión</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Login", "Account")" class="btn-get-started">Iniciar Sesión</a></li>
+                    }
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -164,4 +170,17 @@
 
 </body>
 
+<
+<script>
+    function logout() {
+        var form = document.createElement("form");
+        form.method = "post";
+        form.action = "/Account/Logout";
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
 </html>
+
