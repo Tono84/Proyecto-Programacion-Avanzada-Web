@@ -9,10 +9,14 @@ namespace frontend.Controllers
     {
         public IActionResult Index()
         {
-
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var username = User.FindFirstValue(ClaimTypes.Name);
+
+            // Pass the username to the view
+            ViewBag.Username = username;
+
             return View();
         }
     }
 }
+
