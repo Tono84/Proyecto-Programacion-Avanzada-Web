@@ -90,12 +90,8 @@
     </div>
 
     <div class="card-row">
-        <div class="card">
-            <img src="~/img/Inbox1.jpg" alt="Inbox">
-            <h3>Inbox</h3>
-        </div>
 
-        <div class="card">
+        <div class="card" onclick="downloadPdf()">
             <img src="~/img/inbody1.jpg" alt="Inbody">
             <h3>Inbody</h3>
         </div>
@@ -106,6 +102,15 @@
         </div>
     </div>
     </div>
+
+    <script>
+        function downloadPdf() {
+            var pdfUrl = 'archivos/inbody.pdf';
+
+            window.open(pdfUrl, '_blank');
+        }
+    </script>
+
 </body>
 
 </html>

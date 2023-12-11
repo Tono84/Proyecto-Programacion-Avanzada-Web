@@ -20,7 +20,6 @@ namespace frontend.Controllers
         {
             var username = User.FindFirstValue(ClaimTypes.Name);
 
-            // Pass the username to the view
             ViewBag.Username = username;
 
             return View();
@@ -31,26 +30,24 @@ namespace frontend.Controllers
         {
             try
             {
-                // Get the user ID (replace 123 with the actual user ID)
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-                // Fetch EjerciciosXUsuario data
                 var ejercicios = await GetEjerciciosXUsuario(userId);
 
                 if (ejercicios != null)
                 {
-                    // Pass the data to the view
+
                     ViewBag.Ejercicios = ejercicios;
                 }
                 else
                 {
-                    // Handle the case where fetching data failed
+
                     ViewBag.ErrorMessage = "Error fetching EjerciciosXUsuario data.";
                 }
             }
             catch (Exception ex)
             {
-                // Handle exceptions
+
                 ViewBag.ErrorMessage = $"An error occurred: {ex.Message}";
             }
 
@@ -73,14 +70,13 @@ namespace frontend.Controllers
                     }
                     else
                     {
-                        // Handle the case where the request was not successful
+
                         return null;
                     }
                 }
             }
             catch (HttpRequestException)
             {
-                // Handle the case where an exception occurred during the request
                 return null;
             }
         }
