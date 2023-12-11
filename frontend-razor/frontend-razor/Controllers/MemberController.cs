@@ -153,6 +153,72 @@ namespace frontend.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Alimentos()
+        {
+            try
+            {
+
+                var alimentos = await GetAlimentos();
+
+                if (alimentos != null)
+                {
+
+                    ViewBag.Alimentos = alimentos;
+                }
+                else
+                {
+
+                    ViewBag.ErrorMessage = "Error fetching Alimentos data.";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.ErrorMessage = $"An error occurred: {ex.Message}";
+            }
+
+            return View();
+        }
+
+        private async Task<List<Alimento>> GetAlimentos()
+        {
+            try
+            {
+                var client = _httpClientFactory.CreateClient();
+                var url = $"https://localhost:7061/api/Alimentos";
+
+                using (var response = await client.GetAsync(url))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return await response.Content.ReadFromJsonAsync<List<Alimento>>();
+                    }
+                    else
+                    {
+
+                        return null;
+                    }
+                }
+            }
+            catch (HttpRequestException)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet]
+        public IActionResult AgregarAlimento()
+        {
+            return View();
+        }
+
+        public ActionResult EditarAlimento(int alimentoID)
+        {
+            ViewBag.alimentoID = alimentoID;
+            return View(alimentoID);
+        }
+
     }
 }
 

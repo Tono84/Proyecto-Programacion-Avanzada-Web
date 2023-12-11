@@ -1,0 +1,158 @@
+﻿@model IEnumerable<frontend.Models.Alimento>
+
+@{
+    ViewBag.Title = "Alimentos";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cuerpo&Mente - Alimentos</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+            margin-top: 5%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 5%;
+            text-align: center;
+        }
+
+        .card {
+            margin-bottom: 5%;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 10px;
+        }
+
+        .update-btn {
+            background-color: green;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>Alimentos Data</h2>
+
+    @if (ViewBag.Alimentos != null)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Carbohidratos</th>
+                    <th>Proteínas</th>
+                    <th>Grasas</th>
+                    <th>Agua</th>
+                    <th>Alto en Fibra</th>
+                    <th>Alto en Azúcar</th>
+                    <th>Alto en Grasa</th>
+                    <th>Alto en Sodio</th>
+                    <th>Libre de Gluten</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var alimento in ViewBag.Alimentos)
+                {
+                    <tr>
+                        <td>@alimento.Nombre</td>
+                        <td>@alimento.Carbohidratos</td>
+                        <td>@alimento.Proteinas</td>
+                        <td>@alimento.Grasas</td>
+                        <td>@alimento.Agua%</td>
+                        <td>@(alimento.AltoFibra ? "Si" : "No")</td>
+                        <td>@(alimento.AltoAzucar ? "Si" : "No")</td>
+                        <td>@(alimento.AltoGrasa ? "Si" : "No")</td>
+                        <td>@(alimento.AltoSodio ? "Si" : "No")</td>
+                        <td>@(alimento.LibreGluten ? "Si" : "No")</td>
+                        <td>
+                            @Html.ActionLink("Editar Alimento", "EditarAlimento", "Member", new { area = "", alimentoID = @alimento.IdAlimento }, new { @class = "" })
+
+                        </td>
+                        <td>
+                            <button class="delete-btn" onclick="borrarAlimento(@alimento.IdAlimento)">Borrar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <div class="container">
+        <div class="card">
+            @if (ViewBag.Alimentos == null)
+            {
+                <p class="no-alimentos-message">
+                    No hay datos de Alimentos disponibles.
+                </p>
+            }
+            @Html.ActionLink("Agregar Alimento", "AgregarAlimento", "Member", new { area = "" }, new { @class = "" })
+        </div>
+    </div>
+
+    <script>
+        function borrarAlimento(alimentoId) {
+            var url = `https://localhost:7061/api/Alimentos/${alimentoId}`;
+
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Alimento borrado exitosamente');
+                        window.location.href = '/Member/Alimentos';
+                    } else {
+                        console.error('Error al borrar alimento');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            console.log("Borrando alimento con ID: " + alimentoId);
+        }
+
+    </script>
+</body>
+
+</html>
