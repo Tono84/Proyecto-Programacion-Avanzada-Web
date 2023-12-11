@@ -1,7 +1,5 @@
-
 using Microsoft.AspNetCore.Authentication.Cookies;
-using frontend.Models;
-using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,16 +10,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Login";
-        options.AccessDeniedPath = "/Account/AccessDenied";
+        options.LoginPath = "/Account/Login"; 
+        options.AccessDeniedPath = "/Account/AccessDenied"; 
         options.LogoutPath = "/Home/Index";
     });
 
 // Add IHttpClientFactory registration
 builder.Services.AddHttpClient();
-
-builder.Services.AddDbContext<MenteCuerpoDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MenteCuerpoDbContext")));
 
 var app = builder.Build();
 
