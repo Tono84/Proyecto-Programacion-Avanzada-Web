@@ -1,6 +1,4 @@
-﻿@model List<TipoMembresia>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -41,11 +39,6 @@
             padding: 20px;
         }
 
-        .h1 {
-            padding-top: 100px;
-            text-align: center;
-        }
-
         header {
             background-color: #fff;
             color: black;
@@ -58,6 +51,7 @@
             justify-content: space-around;
             align-items: center;
             flex-wrap: wrap;
+            margin-top: 20px;
         }
 
         .membresia-card {
@@ -68,18 +62,10 @@
             border-radius: 8px;
             overflow: hidden;
             margin: 10px;
-            width: 250px; /* Ajusta el tamaño aquí según tus necesidades */
+            padding: 20px;
+            width: 300px;
             transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
-            height: 100%; /* Hace que todas las tarjetas tengan la misma altura */
         }
-
-            .membresia-card .contenido {
-                flex-grow: 1; /* Hace que el contenido ocupe el espacio disponible */
-                padding: 20px;
-            }
-
 
             .membresia-card:hover {
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -115,24 +101,50 @@
                 .membresia-card .boton:hover {
                     background-color: #00a897;
                 }
+
+            
     </style>
 </head>
 
 <body>
-    <h3 class="h1">Elegir planes disponibles</h3>
     <div class="container">
         <section class="membresia-section">
-            @foreach (var tipoMembresia in Model)
-            {
-                <div class="membresia-card">
-                    <div class="titulo">@tipoMembresia.Nombre</div>
-                    <div class="contenido">@tipoMembresia.Descripcion</div>
-                    <div class="precio">₡@tipoMembresia.Precio</div>
-                    <a href="@Url.Action("Confirmation", "Membership", new { planId = tipoMembresia.IdTipoMembresia})" class="boton">Seleccionar</a>
-                </div>
-            }
+            <div class="membresia-card">
+                <div class="titulo">Plan Mensual</div>
+                <div class="precio">₡10.000</div>
+                <p>
+                    Disfrute de acceso exclusivo a sesiones de entrenamiento 
+                    en vivo dirigidas por entrenadores expertos. Estas sesiones brindan la oportunidad de 
+                    participar en ejercicios en tiempo real, recibir retroalimentación personalizada y 
+                    mantenerse motivados con la interacción en vivo.
+                </p>
+                <a href="@Url.Action("Confirmation","Membership")" class="boton">Seleccionar</a>
+            </div>
+
+            <div class="membresia-card">
+                <div class="titulo">Plan Semestral</div>
+                <div class="precio">₡50.000</div>
+                <p>
+                    Obtén un beneficio adicional de análisis 
+                    avanzado del progreso. Con informes detallados sobre el rendimiento físico y los hábitos 
+                    nutricionales a lo largo del tiempo, los suscriptores pueden evaluar de manera más profunda 
+                    su evolución y realizar ajustes precisos en sus metas y enfoques.
+                </p>
+                <a href="@Url.Action("Confirmation","Membership")" class="boton">Seleccionar</a>
+            </div>
+
+            <div class="membresia-card">
+                <div class="titulo">Plan Anual</div>
+                <div class="precio">₡100.000</div>
+                <p>
+                    Reciba un programa de nutrición a largo plazo diseñado 
+                    específicamente para sus objetivos y necesidades. Este plan incluye evaluaciones periódicas 
+                    y ajustes continuos para asegurar un enfoque sostenible y personalizado hacia una alimentación 
+                    saludable a lo largo de todo el año.
+                </p>
+                <a href="@Url.Action("Confirmation","Membership")" class="boton">Seleccionar</a>
+            </div>
         </section>
     </div>
 </body>
-
 </html>
