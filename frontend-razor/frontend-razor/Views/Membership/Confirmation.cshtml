@@ -1,4 +1,5 @@
-﻿<head>
+﻿
+<head>
     <style>
         h1 {
             margin-top: 100px;
@@ -14,9 +15,9 @@
         <div class="card">
             <div class="card-body">
                 <h5>Confirmar Selección</h5>
-                <p>Has seleccionado el plan:@*  @Model.PlanSeleccionado.Tipo *@</p>
-                <p>Precio: @* $@Model.PlanSeleccionado.Precio *@</p>
-                <a @* asp-page="./Pago" asp-route-planId="@Model.PlanSeleccionado.Id" class="btn btn-success" *@>Continuar al Pago</a>
+                <p>Has seleccionado: @((TempData["PlanSeleccionado"] as TipoMembresia)?.Nombre)</p>
+                <p>Precio: ₡@((TempData["PlanSeleccionado"] as TipoMembresia)?.Precio)</p>
+                <a href="@Url.Action("Payment", "Membership")" class="btn btn-success">Continuar al Pago</a>
             </div>
         </div>
     </div>
