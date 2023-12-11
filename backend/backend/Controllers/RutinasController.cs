@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Models;
+using Microsoft.AspNetCore.Cors;
 
+[EnableCors("AllowLocalhost")]
 [Route("api/[controller]")]
 [ApiController]
 public class RutinaController : ControllerBase
@@ -18,13 +20,17 @@ public class RutinaController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Rutina>>> GetRutinas()
     {
-        return await _context.Rutinas.ToListAsync();
+
+        Response.Headers.Add("Access-Control-Allow-Origin", "https://localhost:7120");
+        Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Authorization");
+        return await _context.Rutina.ToListAsync();
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Rutina>> GetRutina(int id)
     {
-        var rutina = await _context.Rutinas.FindAsync(id);
+        var rutina = await _context.Rutina.FindAsync(id);
 
         if (rutina == null)
         {
@@ -37,7 +43,7 @@ public class RutinaController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Rutina>> PostRutina(Rutina rutina)
     {
-        _context.Rutinas.Add(rutina);
+        _context.Rutina.Add(rutina);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction("GetRutina", new { id = rutina.IdRutina }, rutina);
@@ -75,13 +81,13 @@ public class RutinaController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult<Rutina>> DeleteRutina(int id)
     {
-        var rutina = await _context.Rutinas.FindAsync(id);
+        var rutina = await _context.Rutina.FindAsync(id);
         if (rutina == null)
         {
             return NotFound();
         }
 
-        _context.Rutinas.Remove(rutina);
+        _context.Rutina.Remove(rutina);
         await _context.SaveChangesAsync();
 
         return rutina;
@@ -89,6 +95,6 @@ public class RutinaController : ControllerBase
 
     private bool RutinaExists(int id)
     {
-        return _context.Rutinas.Any(e => e.IdRutina == id);
+        return _context.Rutina.Any(e => e.IdRutina == id);
     }
 }

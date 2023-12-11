@@ -15,13 +15,15 @@ namespace backend.Models
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<TipoRutinas> TipoRutinas { get; set; }
         public DbSet<TipoMembresia> TipoMembresias { get; set; }
-        public DbSet<Rutina> Rutinas { get; set; }
+        public DbSet<Rutina> Rutina { get; set; }
         public DbSet<EjerciciosXUsuario> EjerciciosXUsuario { get; set; }
         public DbSet<Error> Errores { get; set; }
         public DbSet<Evento> Eventos { get; set; }
         public DbSet<Inbody> Inbody { get; set; }
         public DbSet<Inbox> Inbox { get; set; }
         public DbSet<Membresia> Membresias { get; set; }
+
+        public DbSet<EjerciciosXUsuarioView> EjerciciosXUsuarioView { get; set; }
 
     }
 }

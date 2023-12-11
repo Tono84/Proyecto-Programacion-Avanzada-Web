@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using backend.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace backend.Controllers
 {
+    [EnableCors("AllowLocalhost")]
     [Route("api/[controller]")]
     [ApiController]
     public class EjercicioController : ControllerBase
@@ -21,6 +23,9 @@ namespace backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ejercicio>>> GetEjercicios()
         {
+            Response.Headers.Add("Access-Control-Allow-Origin", "https://localhost:7120");
+            Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Authorization");
             return await _context.Ejercicios.ToListAsync();
         }
 
