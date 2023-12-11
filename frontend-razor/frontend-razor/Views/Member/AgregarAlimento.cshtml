@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "Agregar Alimento";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cuerpo&Mente - Agregar Alimento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            display: flex;
+            margin: auto;
+        }
+
+            .card select,
+            .card input {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                box-sizing: border-box;
+            }
+
+            .card button {
+                width: 100%;
+                padding: 10px;
+                background-color: #3498db;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+                .card button:hover {
+                    background-color: #2980b9;
+                }
+
+        .mensaje {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container" style="margin-top: 20%;">
+        <h2>Agregar Alimento</h2>
+
+        <div class="card" style="margin-bottom: 20%;">
+            <form id="agregarAlimentoForm">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required><br>
+
+                <label for="carbohidratos">Carbohidratos:</label>
+                <input type="number" id="carbohidratos" name="carbohidratos" required><br>
+
+                <label for="proteinas">Proteínas:</label>
+                <input type="number" id="proteinas" name="proteinas" required><br>
+
+                <label for="grasas">Grasas:</label>
+                <input type="number" id="grasas" name="grasas" required><br>
+
+                <label for="agua">Agua:</label>
+                <input type="number" id="agua" name="agua" required><br>
+
+                <label for="altoFibra">Alto en Fibra:</label>
+                <input type="checkbox" id="altoFibra" name="altoFibra"><br>
+
+                <label for="altoAzucar">Alto en Azúcar:</label>
+                <input type="checkbox" id="altoAzucar" name="altoAzucar"><br>
+
+                <label for="altoGrasa">Alto en Grasa:</label>
+                <input type="checkbox" id="altoGrasa" name="altoGrasa"><br>
+
+                <label for="altoSodio">Alto en Sodio:</label>
+                <input type="checkbox" id="altoSodio" name="altoSodio"><br>
+
+                <label for="libreGluten">Libre de Gluten:</label>
+                <input type="checkbox" id="libreGluten" name="libreGluten"><br>
+
+                <label for="idNutriente">Nutriente Principal:</label>
+                <select name="idNutriente" id="idNutriente" required>
+                </select>
+
+                <button type="button" onclick="enviarDatos()">Agregar Alimento</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var xhrNutriente = new XMLHttpRequest();
+            xhrNutriente.open("GET", "https://localhost:7061/api/Nutrientes", true);
+            xhrNutriente.onreadystatechange = function () {
+                if (xhrNutriente.readyState === 4 && xhrNutriente.status === 200) {
+
+                    var data = JSON.parse(xhrNutriente.responseText);
+
+                    var dropdownNutriente = document.getElementById("idNutriente");
+                    data.forEach(function (nutriente) {
+                        var option = document.createElement("option");
+                        option.value = nutriente.idNutriente;
+                        option.text = nutriente.nombre;
+                        dropdownNutriente.appendChild(option);
+                    });
+                }
+            };
+            xhrNutriente.send();
+        });
+
+        function enviarDatos() {
+            var formData = {
+                nombre: document.getElementById('nombre').value,
+                carbohidratos: parseFloat(document.getElementById('carbohidratos').value),
+                proteinas: parseFloat(document.getElementById('proteinas').value),
+                grasas: parseFloat(document.getElementById('grasas').value),
+                agua: parseFloat(document.getElementById('agua').value),
+                altoFibra: document.getElementById('altoFibra').checked,
+                altoAzucar: document.getElementById('altoAzucar').checked,
+                altoGrasa: document.getElementById('altoGrasa').checked,
+                altoSodio: document.getElementById('altoSodio').checked,
+                libreGluten: document.getElementById('libreGluten').checked,
+                idNutriente: parseFloat(document.getElementById('idNutriente').value)
+            };
+
+            fetch('https://localhost:7061/api/Alimentos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Respuesta del servidor:', data);
+                    window.location.href = '/Member/Alimentos';
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>
