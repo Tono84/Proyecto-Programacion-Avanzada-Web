@@ -39,13 +39,13 @@ public class MembresiasController : ControllerBase
         _dbContext.Membresias.Add(membresia);
         await _dbContext.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetMembresia), new { id = membresia.IdMembresia }, membresia);
+        return CreatedAtAction(nameof(GetMembresia), new { id = membresia.MembresiaID }, membresia);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> PutMembresia(int id, Membresia membresia)
     {
-        if (id != membresia.IdMembresia)
+        if (id != membresia.MembresiaID)
         {
             return BadRequest();
         }
@@ -88,6 +88,6 @@ public class MembresiasController : ControllerBase
 
     private bool MembresiaExists(int id)
     {
-        return _dbContext.Membresias.Any(e => e.IdMembresia == id);
+        return _dbContext.Membresias.Any(e => e.MembresiaID == id);
     }
 }

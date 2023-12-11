@@ -55,36 +55,70 @@ namespace backend.Controllers
         return CreatedAtAction("GetUsuario", new { id = usuario.IdUsuario }, usuario);
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
-    {
-        if (id != usuario.IdUsuario)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
         {
-            return BadRequest();
-        }
+            if (id != usuario.IdUsuario)
+            {
+                return BadRequest();
+            }
 
-        _context.Entry(usuario).State = EntityState.Modified;
+            var existingUsuario = await _context.Usuarios.FindAsync(id);
 
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!UsuarioExists(id))
+            if (existingUsuario == null)
             {
                 return NotFound();
             }
-            else
+
+            // Update only the fields that are not null in the provided 'usuario' object
+            if (usuario.Nombre != null)
             {
-                throw;
+                existingUsuario.Nombre = usuario.Nombre;
             }
+
+            if (usuario.Apellido != null)
+            {
+                existingUsuario.Apellido = usuario.Apellido;
+            }
+
+            if (usuario.Correo != null)
+            {
+                existingUsuario.Correo = usuario.Correo;
+            }
+
+            if (usuario.Contraseña != null)
+            {
+                existingUsuario.Contraseña = usuario.Contraseña;
+            }
+
+            if (usuario.membresiaID != null)
+            {
+                existingUsuario.membresiaID = usuario.membresiaID;
+            }
+
+            _context.Entry(existingUsuario).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UsuarioExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
-        return NoContent();
-    }
 
-    [HttpDelete("{id}")]
+        [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUsuario(int id)
     {
         var usuario = await _context.Usuarios.FindAsync(id);
