@@ -69,6 +69,9 @@
         <div class="welcome-title">
             Bienvenido, @ViewBag.Username!
         </div>
+        <div class="welcome-title">
+            <p id="membresia" name="membresia" >Membresia:</p>
+        </div>
     <div class="card-row">
         <a class="card" href="Membership" >
             <img src="~/img/membership1.jpg" alt="Membresia">
@@ -113,12 +116,30 @@
     </div>
 
     <script>
-        function downloadPdf() {
-            var pdfUrl = 'archivos/inbody.pdf';
+        document.addEventListener("DOMContentLoaded", function () {
+            var MembresiaID = @ViewBag.MembresiaID;
 
-            window.open(pdfUrl, '_blank');
-        }
+            fetch(`https://localhost:7061/api/Membresias/${MembresiaID}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById("membresia").textContent = "Membresia: " + data.nombre;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+
+            function downloadPdf() {
+                var pdfUrl = 'archivos/inbody.pdf';
+                window.open(pdfUrl, '_blank');
+            }
+        });
     </script>
+
 
 </body>
 

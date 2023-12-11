@@ -41,6 +41,7 @@ namespace frontend.Controllers
         {
             new Claim(ClaimTypes.Name, user.NombreUsuario),
             new Claim(ClaimTypes.NameIdentifier, user.idUsuario.ToString()),
+            new Claim("MembresiaID", user.MembresiaID.ToString()),
         };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

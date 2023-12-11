@@ -9,24 +9,16 @@ namespace backend.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdUsuario { get; set; }
 
-        [Required]
-        [MaxLength(255)]
-        public string NombreUsuario { get; set; }
+        public string? NombreUsuario { get; set; }
 
-        [Required]
-        [MaxLength(255)]
-        public string Contraseña { get; set; }
+        public string? Contraseña { get; set; }
 
-        [Required]
-        [MaxLength(255)]
-        public string Nombre { get; set; }
+        public string? Nombre { get; set; }
 
-        [Required]
-        [MaxLength(255)]
-        public string Apellido { get; set; }
+        public string? Apellido { get; set; }
 
-        [Required]
-        [MaxLength(255)]
-        public string Correo { get; set; }
+        public string? Correo { get; set; }
+
+        public int? membresiaID { get; set; }
     }
 }

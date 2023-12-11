@@ -1,5 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace backend.Models
 {
@@ -7,14 +8,21 @@ namespace backend.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdMembresia { get; set; }
-        public DateTime FechaInicio { get; set; }
-        public DateTime FechaExpiracion { get; set; }
-        public DateTime FechaRenovacion { get; set; }
-        public DateTime FechaFinal { get; set; }
-        public DateTime FechaPago { get; set; }
-        public int IdTipoMembresia { get; set; }
-        public int IdUsuario { get; set; }
+        public int MembresiaID { get; set; }
 
+        [Required]
+        public string Nombre { get; set; }
+
+        [Required]
+        [Column(TypeName = "decimal(10, 2)")]
+        public decimal Precio { get; set; }
+
+        [Required]
+        public int DuracionMeses { get; set; }
+
+        public string Descripcion { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime FechaCreacion { get; set; } = DateTime.Now;
     }
 }

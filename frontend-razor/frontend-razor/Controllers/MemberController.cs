@@ -20,6 +20,13 @@ namespace frontend.Controllers
         {
             var username = User.FindFirstValue(ClaimTypes.Name);
 
+            var membresiaIDClaim = User.Claims.FirstOrDefault(c => c.Type == "MembresiaID");
+            if (membresiaIDClaim != null)
+            {
+                var membresiaIDValue = membresiaIDClaim.Value;
+                ViewBag.MembresiaID = membresiaIDValue;
+            }
+
             ViewBag.Username = username;
 
             return View();
