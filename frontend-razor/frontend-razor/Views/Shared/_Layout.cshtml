@@ -44,20 +44,13 @@
                 <ul>
                     <li><a href="@Url.Action("Index", "Home")" class="active">Inicio</a></li>
 
-                    <li class="dropdown">
-                        <a href="#"><span>Conozcanos</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="about.html">Nosotros</a></li>
-                            <li><a href="team.html">El Equipo</a></li>
-                            <li><a href="testimonials.html">Testimonios</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="@Url.Action("Nosotros", "Home")" class="btn-get-started">Nosotros</a></li>
 
                     <li><a href="@Url.Action("Servicios", "Home")" class="btn-get-started">Servicios</a></li>
-                    <li><a href="pricing.html">Precios</a></li>
-                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="@Url.Action("Precios", "Home")" class="btn-get-started">Precios</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
+                        <li><a href="@Url.Action("Index", "Member")" class="btn-get-started">Area de Miembros</a></li>
                         <li><a href="#" onclick="logout()">Cerrar Sesión</a></li>
                     }
                     else
@@ -70,10 +63,10 @@
             </nav><!-- .navbar -->
 
             <div class="header-social-links d-flex">
-                <a href="#" class="twitter"><i class="bu bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bu bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bu bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bu bi-linkedin"></i></a>
+                <a href="https://twitter.com/healthy?lang=en" class="twitter"><i class="bu bi-twitter"></i></a>
+                <a href="https://www.facebook.com/healthyfoodguide/" class="facebook"><i class="bu bi-facebook"></i></a>
+                <a href="https://www.instagram.com/eatinghealthygram/?hl=en" class="instagram"><i class="bu bi-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/food-healthy/" class="linkedin"><i class="bu bi-linkedin"></i></a>
             </div>
 
         </div>
@@ -145,11 +138,11 @@
                 </div>
             </div>
             <div class="social-links text-center text-md-right pt-3 pt-md-0">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://twitter.com/healthy?lang=en" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.facebook.com/healthyfoodguide/" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/eatinghealthygram/?hl=en" class="instagram"><i class="bx bxl-instagram"></i></a>
                 <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://www.linkedin.com/company/food-healthy/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
         </div>
     </footer><!-- End Footer -->

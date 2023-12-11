@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cuerpo&Mente - Nosotros</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hero-section {
+            background-image: url('@Url.Content("~/img/about-us-banner.png")');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            max-width: 100%;
+        }
+
+            .hero-section h1 {
+                font-size: 3em;
+                margin-bottom: 20px;
+            }
+
+            .hero-section p {
+                font-size: 1.2em;
+                max-width: 800px;
+                margin: 0 auto;
+                line-height: 1.5;
+            }
+
+        .about-section {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+        }
+
+        .about-card {
+            text-align: center;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px;
+            padding: 30px;
+            width: 300px;
+            max-width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+            .about-card:hover {
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+                transform: translateY(-5px);
+            }
+
+            .about-card img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                margin-bottom: 20px;
+            }
+
+        .titulo {
+            color: #3498db;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            display: inline-block;
+        }
+
+        .about-card .descripcion {
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Cuerpo&Mente - Nosotros</h1>
+    </header>
+
+    <div class="hero-section">
+        <h1>Nuestra Pasión es Tu Bienestar</h1>
+        <p>Descubre quiénes somos y cómo estamos comprometidos con tu salud y felicidad.</p>
+    </div>
+
+    <div class="about-section">
+        <div class="about-card">
+            <img src='@Url.Content("~/img/about-us-equipo.jpg")' alt="Team Member 1">
+            <div class="titulo">Equipo Apasionado</div>
+            <div class="descripcion">
+                Conoce a nuestro dedicado equipo de profesionales apasionados por tu bienestar. Estamos aquí para guiarte en cada paso de tu viaje hacia una vida más saludable.
+            </div>
+        </div>
+
+        <div class="about-card">
+            <img src='@Url.Content("~/img/about-us-valores.jpg")' alt="Team Member 2">
+            <div class="titulo">Nuestra Historia</div>
+            <div class="descripcion">
+                Descubre cómo Cuerpo&Mente ha evolucionado para convertirse en líder en servicios de salud y bienestar. Desde nuestros inicios hasta nuestros logros actuales.
+            </div>
+        </div>
+
+        <div class="about-card">
+            <img src='@Url.Content("~/img/about-us-historia.jpg")' alt="Team Member 3">
+            <div class="titulo">Nuestros Valores</div>
+            <div class="descripcion">
+                En Cuerpo&Mente, nos guían valores como la integridad, la excelencia y la dedicación a nuestros clientes. Conoce cómo estos principios dan forma a lo que hacemos.
+            </div>
+        </div>
+    </div>
+
+    <section id="hero">
+        <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+
+                <div class="carousel-item active" style="background-image: url('@Url.Content("~/img/avatar1.png")');">
+                    <div class="carousel-container">
+                        <div class="carousel-content animate__animated animate__fadeInUp">
+                            <h2>Conoce a Jose, co-fundador. </h2>
+                            <p>Su pasión por la salud y el bienestar ha sido el motor que impulsa nuestra aplicación. Descubre cómo Jose ha liderado el camino hacia una vida más saludable.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item" style="background-image: url('@Url.Content("~/img/avatar2.png")');">
+                    <div class="carousel-container">
+                        <div class="carousel-content animate__animated animate__fadeInUp">
+                            <h2>Conoce a Mateo, co-fundador. </h2>
+                            <p>Su enfoque en rutinas personalizadas ha transformado la forma en que abordamos el fitness. Descubre cómo las rutinas diseñadas por Mateo han impactado positivamente la vida de nuestros usuarios.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item" style="background-image: url('@Url.Content("~/img/avatar3.png")');">
+                    <div class="carousel-container">
+                        <div class="carousel-content animate__animated animate__fadeInUp">
+                            <h2>Conoce a Luis, co-fundador. </h2>
+                            <p>Su experiencia en informes InBody ha dado a nuestros usuarios una visión completa de su progreso. Descubre cómo Luis ha contribuido a la evolución de nuestra aplicación.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+            </a>
+
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+            </a>
+
+            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+        </div>
+    </section>
+
+</body>
+
+</html>
