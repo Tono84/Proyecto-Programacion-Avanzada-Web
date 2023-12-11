@@ -7,7 +7,7 @@ namespace backend.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdEjercicioU { get; set; }
+        public int idEjericioU { get; set; }
         public int IdUsuario { get; set; }
         public int IdEjercicio { get; set; }
         public int? IdRutina { get; set; }
