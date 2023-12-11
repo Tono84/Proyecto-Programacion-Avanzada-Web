@@ -1,0 +1,70 @@
+﻿@model List<Historial>  
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cuerpo&Mente - Historial</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: auto;
+        margin-top: 5%;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .container {
+        margin-top: 5%;
+        text-align: center;
+    }
+
+    .card {
+        margin-bottom: 5%;
+    }
+
+    </style>
+</head>
+<body>
+    <h2>Historial</h2>
+    @if (ViewBag.Historial != null)
+    {
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Fecha de Carga</th>
+                    <th>Comentarios Profesional</th>
+                    <th>Documento Inbody</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.Historial)
+                {
+                    <tr>
+                        <td>@item.fechaCarga.ToString("yyyy-MM-dd")</td>
+                        <td>@item.comentariosProfesional</td>
+                        <td><a class="pdf-link" href="~/archivos/inbody.pdf" download>Informe_Inbody_1.pdf</a></td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+    }
+</body>
+</html>

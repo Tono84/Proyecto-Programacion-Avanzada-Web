@@ -226,6 +226,61 @@ namespace frontend.Controllers
             return View(alimentoID);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Historial()
+        {
+            try
+            {
+
+                var historial = await GetHistorial();
+
+                if (historial != null)
+                {
+
+                    ViewBag.Historial = historial;
+                }
+                else
+                {
+
+                    ViewBag.ErrorMessage = "Error fetching historial data.";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.ErrorMessage = $"An error occurred: {ex.Message}";
+            }
+
+            return View();
+        }
+
+
+        private async Task<List<Historial>> GetHistorial()
+        {
+            try
+            {
+                var client = _httpClientFactory.CreateClient();
+                var url = $"https://localhost:7061/api/Inbody";
+
+                using (var response = await client.GetAsync(url))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return await response.Content.ReadFromJsonAsync<List<Historial>>();
+                    }
+                    else
+                    {
+
+                        return null;
+                    }
+                }
+            }
+            catch (HttpRequestException)
+            {
+                return null;
+            }
+        }
+
     }
 }
 
