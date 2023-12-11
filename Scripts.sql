@@ -326,3 +326,27 @@ REFERENCES [dbo].[TipoRutinas] ([IdTipoRutina])
 GO
 ALTER TABLE [dbo].[rutina] CHECK CONSTRAINT [FK_rutina_TipoRutinas]
 GO
+
+/****** VISTAS******/
+CREATE VIEW dbo.EjerciciosXUsuarioView
+AS
+SELECT
+    EU.idEjericioU,
+    EU.idUsuario,
+    EU.idEjercicio,
+    EU.idRutina,
+    EU.Cantidad,
+    E.nombre AS EjercicioNombre,
+    E.EjSet,
+    E.Repeticiones,
+    R.Descripcion AS RutinaDescripcion,
+    R.Activo,
+    R.FechaCreacion,
+    R.IdTipoRutina
+FROM
+    dbo.EjerciciosXUsuario EU
+INNER JOIN
+    dbo.ejercicios E ON EU.idEjercicio = E.idEjercicio
+LEFT JOIN
+    dbo.rutina R ON EU.idRutina = R.idRutina;
+GO
