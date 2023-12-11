@@ -64,15 +64,12 @@
             <h2>Crear Rutina</h2>
             <form id="rutinaForm" method="post" asp-action="CrearRutina" asp-controller="Member">
                 <select name="idRutina" required>
-                    <!-- The options will be populated using JavaScript -->
                 </select>
                 <select name="idEjercicio" required>
-                    <!-- The options will be populated using JavaScript -->
                 </select>
                 <input type="number" name="cantidad" placeholder="Días a la Semana" required>
                 <button type="submit" class="btn-get-started">Crear Rutina</button>
                 <p class="mensaje">
-                    <!-- Add any additional messages or links here if needed -->
                 </p>
             </form>
         </div>
@@ -81,15 +78,14 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Fetch data for idRutina
+
             var xhrRutina = new XMLHttpRequest();
             xhrRutina.open("GET", "https://localhost:7061/api/Rutina", true);
             xhrRutina.onreadystatechange = function () {
                 if (xhrRutina.readyState === 4 && xhrRutina.status === 200) {
-                    // Parse the JSON response
+
                     var data = JSON.parse(xhrRutina.responseText);
 
-                    // Populate the dropdown with options for idRutina
                     var dropdownRutina = document.querySelector("select[name='idRutina']");
                     data.forEach(function (rutina) {
                         var option = document.createElement("option");
@@ -98,15 +94,14 @@
                         dropdownRutina.appendChild(option);
                     });
 
-                    // Fetch data for idEjercicio
                     var xhrEjercicio = new XMLHttpRequest();
                     xhrEjercicio.open("GET", "https://localhost:7061/api/Ejercicio", true);
                     xhrEjercicio.onreadystatechange = function () {
                         if (xhrEjercicio.readyState === 4 && xhrEjercicio.status === 200) {
-                            // Parse the JSON response
+
                             var dataEjercicio = JSON.parse(xhrEjercicio.responseText);
 
-                            // Populate the dropdown with options for idEjercicio
+
                             var dropdownEjercicio = document.querySelector("select[name='idEjercicio']");
                             dataEjercicio.forEach(function (ejercicio) {
                                 var option = document.createElement("option");
