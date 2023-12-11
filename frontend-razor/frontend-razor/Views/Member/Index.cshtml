@@ -42,15 +42,21 @@
             }
 
             .card h3 {
-                color: #00b894; /* Verde */
+                color: #00b894; 
                 font-weight: bold;
                 margin-top: 10px;
             }
 
+        .overlay-text {
+            font-size: 16px;
+            color: darkorange;
+            font-weight: bold;
+        }
+
         .welcome-title {
             text-align: center;
             margin-bottom: 20px;
-            color: #00b894; /* Your desired color */
+            color: #00b894; 
             font-size: 24px;
             font-weight: bold;
         }
@@ -71,10 +77,11 @@
     </div>
 
     <div class="card-row">
-        <div class="card">
-            <img src="~/img/dietplan1.jpg" alt="Plan Nutricional">
-            <h3>Plan Nutricional</h3>
-        </div>
+            <div class="card overlay">
+                <div class="overlay-text">Próximamente</div>
+                <img src="~/img/dietplan1.jpg" alt="Plan Nutricional">
+                <h3>Plan Nutricional</h3>
+            </div>
 
         <div class="card">
             <img src="~/img/History1.jpg" alt="Historiales">
